@@ -32,7 +32,7 @@ module se_tb;
         $display("imm=%b extended=%b", imm, extended);
 
         // test max positive
-        imm = 6'b1000000;  // -32
+        imm = 6'b100000;  // -32
         #10;
         $display("imm=%b extended=%b", imm, extended);
 
