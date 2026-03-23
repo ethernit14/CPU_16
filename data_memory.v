@@ -8,14 +8,18 @@ module data_memory (
 
     reg [15:0] ram [0:255];
 
-    // Write logic (sequential)
     always @(posedge clk) begin
         if (we) begin
             ram[addr] <= wdata;
         end
     end
 
-    // Read logic (combinational)
+    integer i;
+    initial begin
+        for (i = 0; i < 256; i = i + 1)
+            ram[i] = 16'b0;
+    end
+
     assign rdata = ram[addr];
 
 endmodule
