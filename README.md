@@ -19,7 +19,7 @@ A 16-bit CPU designed from scratch in Verilog by Doruk (2026).
 
 ### I-type (immediate operations)
 ```
-[15:12] opcode | [11:9] rd | [8:6] ra | [5:0] immediate
+[15:12] opcode | [11:9] rd | [8:6] ra | [5:0] immediate (6-bit, sign extended to 16-bit)
 ```
 
 ### J-type (jump operations)
@@ -42,7 +42,7 @@ A 16-bit CPU designed from scratch in Verilog by Doruk (2026).
 | 1000 | I | LDI rd, imm | rd = imm |
 | 1001 | I | ADDI rd, ra, imm | rd = ra + imm |
 | 1010 | I | LD rd, ra, imm | rd = mem[ra + imm] |
-| 1011 | I | ST ra, rb, imm | mem[ra + imm] = rb |
+| 1011 | I | ST rd, ra, imm | mem[rd + imm] = ra |
 | 1100 | J | JMP imm | pc = imm |
 | 1101 | J | BEQ ra, rb, imm | if ra==rb: pc = pc + imm |
 | 1110 | J | BLT ra, rb, imm | if ra<rb: pc = pc + imm |

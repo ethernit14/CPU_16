@@ -69,11 +69,11 @@ module cpu_top(
     register_file rf_inst(
         .clk(clk),
         .reset(reset),
-        .read_addr1(ra),
-        .read_addr2(rb),
+        .read_addr1((opcode == 4'b1011) ? rd : ra),  // ST uses rd, others use ra
+        .read_addr2(ra),
         .write_addr(rd),
         .write_data(write_back_data),
-        .write_en(reg_write_en),
+        .write_en(reg_write_en),    
         .read_data1(reg_data1),
         .read_data2(reg_data2)
     );
@@ -106,6 +106,6 @@ module cpu_top(
 
     // Jump/Branch logic
     assign pc_jump      = jump_en | branch_en;
-    assign pc_jump_addr = jump_en ? immediate_ext : pc + immediate_ext;
+    assign pc_jump_addr = jump_en ? immediate_ext : pc + 1 + immediate_ext;
 
 endmodule
