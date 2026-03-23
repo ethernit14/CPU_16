@@ -24,11 +24,13 @@ module cpu_tb;
 
     // monitor what's happening every cycle
     initial begin
-        $monitor("t=%0t pc=%0d instr=%b alu=%0d we=%0d R1=%0d R2=%0d R3=%0d R4=%0d mem0=%0d",
+        $monitor("t=%0t pc=%0d instr=%b alu=%0d neg=%b branch=%b we=%0d R1=%0d R2=%0d R3=%0d R4=%0d mem0=%0d",
             $time,
             cpu.pc,
             cpu.instruction,
             cpu.alu_result,
+            cpu.negative,
+            cpu.branch_en,
             cpu.mem_write_en,
             cpu.rf_inst.registers[1],
             cpu.rf_inst.registers[2],

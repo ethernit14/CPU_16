@@ -24,7 +24,13 @@ module rf_tb;
     initial begin
         // reset
         reset = 1; write_en = 0;
-        @(posedge clk); #1;
+        read_addr1 = 3'd1;
+        read_addr2 = 3'd2;
+        write_addr = 3'd0;
+        write_data = 16'd0;
+        
+        // wait a few cycles for initialization
+        #20;
         @(posedge clk); #1;
         reset = 0;
         $display("After reset: R1=%d R2=%d", read_data1, read_data2);
