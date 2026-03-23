@@ -18,7 +18,7 @@ module cpu_tb;
         reset = 0;
 
         // run for 20 cycles    
-        #300;
+        #1000;
         $finish;
     end
 
