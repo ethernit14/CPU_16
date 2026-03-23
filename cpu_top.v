@@ -69,8 +69,10 @@ module cpu_top(
     register_file rf_inst(
         .clk(clk),
         .reset(reset),
-        .read_addr1((opcode == 4'b1011) ? rd : ra),  // ST uses rd, others use ra
-        .read_addr2(ra),
+        .read_addr1((opcode == 4'b1011) ? rd : 
+                (opcode == 4'b1101 || opcode == 4'b1110) ? rd : ra),
+        .read_addr2((opcode == 4'b1011) ? ra : 
+                (opcode == 4'b1101 || opcode == 4'b1110) ? ra : rb),
         .write_addr(rd),
         .write_data(write_back_data),
         .write_en(reg_write_en),    

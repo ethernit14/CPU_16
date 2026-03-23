@@ -126,8 +126,8 @@ def assemble_instruction(line, line_num):
             raise ValueError(f"Branch instruction {mnemonic} requires 3 operands")
         ra = parse_register(parts[1])  # Not used in encoding, but validate
         rb = parse_register(parts[2])  # Not used in encoding, but validate
-        imm = parse_immediate(parts[3], 12)
-        instruction = opcode + imm
+        imm = parse_immediate(parts[3], 6)
+        instruction = opcode + ra + rb + imm
 
     # NOP
     elif mnemonic == 'NOP':
@@ -143,7 +143,7 @@ def main():
         sys.exit(1)
 
     input_file = sys.argv[1]
-    output_file = input_file.rsplit('.', 1)[0] + '.mem'
+    output_file = 'program.mem'
 
     instructions = []
 
@@ -158,7 +158,6 @@ def main():
                     print(f"Error on line {line_num}: {e}")
                     sys.exit(1)
 
-        # Write output in hex format for Verilog ROM initialization
         with open(output_file, 'w') as f:
             for instr in instructions:
                 f.write(instr + '\n')

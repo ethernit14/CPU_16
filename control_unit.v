@@ -83,15 +83,13 @@ module control_unit (
             4'b1100: begin  // JMP
                 jump_en = 1;
             end
-            4'b1101: begin  // BEQ (branch if equal)
-                if (zero) begin
-                    branch_en = 1;
-                end
+            4'b1101: begin  // BEQ
+                alu_op = 4'b0001;
+                if (zero) branch_en = 1;
             end
-            4'b1110: begin  // BLT (branch if less than)
-                if (negative) begin
-                    branch_en = 1;
-                end
+            4'b1110: begin  // BLT 
+                alu_op = 4'b0001;
+                if (negative) branch_en = 1;
             end
             
             // 4'b1111: NOP - all signals stay 0
