@@ -1,9 +1,9 @@
 module cpu_top(
     input clk,
-    input reset
+    input reset,
+    output [15:0] pc
 );
     // internal wires
-    wire [15:0] pc;
     wire [15:0] instruction;
     wire [3:0]  opcode;
     wire [2:0]  rd, ra, rb;

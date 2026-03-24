@@ -6,7 +6,7 @@ module instruction_mem (
     reg [15:0] rom [0:255];
 
     initial begin
-        $readmemb("program.mem", rom);
+        $readmemb("programs/program.mem", rom);
     end
 
     assign instruction = rom[addr];

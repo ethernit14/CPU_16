@@ -7,9 +7,9 @@ module cpu_top_fpga(
     
     cpu_top cpu(
         .clk(clk),
-        .reset(~reset)  // button is active low
+        .reset(~reset),
+        .pc(pc)        // ← connect pc
     );
-    
-    // Show PC on LEDs
-    assign led = ~cpu.pc[5:0];  // active low
+
+    assign led = ~pc[5:0];
 endmodule
