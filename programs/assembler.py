@@ -143,7 +143,7 @@ def main():
         sys.exit(1)
 
     input_file = sys.argv[1]
-    output_file = 'program.mem'
+    output_file = 'programs/program.mem'
 
     instructions = []
 
